@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bridging Compressed Image Latents and Multimodal Large Language Models</title>
+  <script type="text/javascript" src="assets/latexit.js"></script>
+  <script type="text/javascript">
+    LatexIT.add('p', true);
+  </script>
+
+  <!-- CSS includes -->
+  <link href="assets/bootstrap.css" rel="stylesheet">
+  <link href="assets/css.css" rel="stylesheet" type="text/css">
+  <link href="assets/mystyle.css" rel="stylesheet">
+  <link href="assets/lightbox2-2.11.3/dist/css/lightbox.css" rel="stylesheet" />
+
+  <link rel="icon" href="assets/icon/bridge.png" type="image/x-icon">
+</head>
+
+<body>
+
+  <div id="header" class="container-fluid">
+    <div class="row">
+      <h1><img src="assets/icon/bridge.png" height="55"> Bridging Compressed Image Latents and <br /> Multimodal Large Language Models</h1>
+      <div class="authors">
+        Chia-Hao Kao, Cheng Chien, Yu-Jen Tseng, Yi-Hsin Chen, <br /> Alessandro Gnutti, Shao-Yuan Lo, Wen-Hsiao Peng, Riccardo Leonardi
+      </div>
+      <div class="conference">
+        <a href="https://iclr.cc/">ICLR 2025</a>    
+        <span style="display:inline-block; width: 5px;"></span>
+        <a href="https://arxiv.org/abs/2407.19651" target="_blank"><img src="assets/icon/arxiv.jpg" height="35"></a>
+        <!-- <span style="display:inline-block; width: 1px;"></span> -->
+        <!-- <a href="https://github.com/NYCU-MAPL/TransTIC" target="_blank"><img src="assets/icon/GitHub-Mark.png" height="45"></a> -->
+      </div>
+    </div>
+
+    <p style="text-align:center;">
+      <a href="https://en.nycu.edu.tw/" target="_blank"><img src="assets/icon/210204-NYCU.png" height="90"></a>
+      <a href="https://mapl.cs.nycu.edu.tw/content/index.html" target="_blank"><img src="assets/icon/mapl_logo.png" height="120"></a>
+      <br>
+      <a href="https://www.unibs.it/en" target="_blank"><img src="assets/icon/ENG_marchio Unibs orizzontale PANTONE287U.png" height="130"  style="padding-right: 110px;"></a>
+      <a href="https://usa.honda-ri.com/" target="_blank"><img src="assets/icon/honda-main-logo.png" height="110"></a>
+    </p>
+  </div>
+  <div class="container" id="abstractdiv">
+    <h2>Abstract</h2>
+    <p>
+      This paper presents the first-ever study of adapting compressed image latents to
+      suit the needs of downstream vision tasks that adopt Multimodal Large Language
+      Models (MLLMs). MLLMs have extended the success of large language models
+      to modalities (e.g. images) beyond text, but their billion scale hinders deployment on resource-constrained end devices. While cloud-hosted MLLMs could be
+      available, transmitting raw, uncompressed images captured by end devices to the
+      cloud requires an efficient image compression system. To address this, we focus
+      on emerging neural image compression and propose a novel framework with a
+      lightweight transform-neck and a surrogate loss to adapt compressed image latents
+      for MLLM-based vision tasks. Given the huge scale of MLLMs, our framework excludes the entire downstream MLLM except part of its visual encoder from training
+      our system. This stands out from most existing coding for machine approaches that
+      involve downstream networks in training and thus could be impractical when the
+      networks are MLLMs. The proposed framework is general in that it is applicable to
+      various MLLMs, neural image codecs, and multiple application scenarios, where
+      the neural image codec can be (1) pre-trained for human perception without updating, (2) fully updated for joint human and machine perception, or (3) fully updated
+      for only machine perception. Extensive experiments on different neural image
+      codecs and various MLLMs show that our method achieves great rate-accuracy
+      performance with much less complexity.
+    </p>
+    <div class="col-md-12">
+      <hr>
+    </div>
+  </div>
+
+
+
+  <div class="container" id="banner">
+    <h2>Method</h2>
+    <p style="text-align:center;">
+      <a href="assets/architecture.png" data-lightbox="arch"><img src="assets/architecture.png" data-lightbox="arch"
+          width="95%"></a>
+    </p>
+    <br>
+    <p>
+      The proposed method introduces a novel approach to adapting compressed image latents for Multimodal Large Language Models (MLLMs), addressing the challenge of efficiently transmitting images while preserving task performance. Instead of reconstructing images from compressed latents, the method employs a lightweight transform-neck module that directly adapts the latents to the intermediate features of the MLLM’s visual encoder. This avoids computationally expensive image reconstruction, reducing complexity while maintaining recognition accuracy. Additionally, a surrogate loss function—combining cross-entropy and distillation loss—guides the adaptation process, ensuring that transformed latents align well with the visual encoder’s feature space. The training process is structured into phases, where the transform-neck is first trained independently and, in some cases, jointly optimized with the image codec to further enhance machine perception.
+    </p>
+    <div class="col-md-12">
+      <hr>
+    </div>
+  </div>
+      
+    <!-- <div class="container" id="paperdiv">
+      <h2>Paper</h2>
+      <a href="assets/paper.pdf"
+        download="TransTIC: Transferring Transformer-based Image Compression from Human Perception to Machine Perception.pdf">
+        <div class="thumbs">
+      <img src="assets/thumbnails/paper-01.jpg" width="19%">
+      <img src="assets/thumbnails/paper-02.jpg" width="19%">
+      <img src="assets/thumbnails/paper-03.jpg" width="19%">
+      <img src="assets/thumbnails/paper-04.jpg" width="19%">
+      <img src="assets/thumbnails/paper-05.jpg" width="19%">
+      <img src="assets/thumbnails/paper-06.jpg" width="19%">
+      <img src="assets/thumbnails/paper-07.jpg" width="19%">
+      <img src="assets/thumbnails/paper-08.jpg" width="19%">
+      <img src="assets/thumbnails/paper-09.jpg" width="19%">
+      <img src="assets/thumbnails/paper-10.jpg" width="19%">
+      <img src="assets/thumbnails/paper-11.jpg" width="19%">
+      <img src="assets/thumbnails/paper-12.jpg" width="19%">
+      <img src="assets/thumbnails/paper-13.jpg" width="19%">
+      <img src="assets/thumbnails/paper-14.jpg" width="19%">
+      <img src="assets/thumbnails/paper-15.jpg" width="19%">
+      <img src="assets/thumbnails/paper-16.jpg" width="19%">
+      <img src="assets/thumbnails/paper-17.jpg" width="19%">
+      <img src="assets/thumbnails/paper-18.jpg" width="19%">
+    </div>
+    </a> -->
+
+    <div class="container" id="exp_results">
+      <h2>Rate-distortion Results</h2>
+      <p>
+        The proposed method significantly improves rate-accuracy performance for MLLM-based vision tasks by efficiently adapting compressed image latents. Compared to standard image compression methods, it achieves up to 60-80% bit-rate reductions while maintaining or even improving task performance. The lightweight transform-neck successfully replaces full image reconstruction, reducing decoding complexity by nearly 95% in terms of multiply-accumulate operations (kMAC/pixel). The method generalizes well across different MLLMs, neural image codecs, and tasks, demonstrating superior performance over baselines that rely on standard image reconstruction or post-processing. By optimizing for machine perception, the approach achieves recognition accuracy close to uncompressed images while drastically reducing transmission and computational costs.
+      </p>
+      <br>
+
+      <div id="exp1">
+        <div class="col-md-6 vcenter">
+          <p style="text-align:center;">
+            <a href="assets/results/paper_main_RD_full.png" data-lightbox="Exp1"><img
+                src="assets/results/paper_main_RD_full.png" width="1080"></a>
+          </p>
+        </div>
+      </div>
+      <div class="col-md-12">
+        <hr>
+      </div>
+    </div>
+
+    <div class="container" id="Visualization">
+      <h2>Qualitative Comparison</h2>
+      <p>
+        The visualizations highlight the effectiveness of the proposed method in image captioning, visual question answering (VQA), referring expression comprehension (REC), and few-shot classification. Compared to standard reconstruction and post-processing baselines, the method consistently generates more accurate and semantically meaningful outputs, even at low bitrates. In captioning, for example, it produces more precise object descriptions rather than generic or incorrect labels. In VQA and REC, it improves localization accuracy, helping MLLMs better identify objects and their attributes. Additionally, in few-shot classification, it enhances class recognition, outperforming baselines that suffer from compression artifacts. The results visually confirm that adapting compressed latents directly for MLLMs preserves essential semantic information while reducing transmission and computational overhead.
+      </p>
+
+      <div id="exp1">
+        <div class="col-md-6 vcenter">
+          <p style="text-align:center;">
+            <a href="assets/results/visualize_cap.png" data-lightbox="Exp1"><img
+              src="assets/results/visualize_cap.png" width="1080"></a>
+          </p>
+        </div>
+      </div>
+      <div class="col-md-12">
+        <hr>
+      </div>
+    </div>
+
+    <div id=footer><br></div>
+    <!-- Javascript includes -->
+    <script src="assets/jquery-1.js"></script>
+    <script src="assets/bootstrap.js"></script>
+    <script src="assets/lightbox2-2.11.3/dist/js/lightbox.js"></script>
+
+
+</body>
+
+</html>
