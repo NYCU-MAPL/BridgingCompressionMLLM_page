@@ -82,7 +82,7 @@
     </p>
     <br>
     <p>
-      The proposed method introduces a novel approach to adapting compressed image latents for Multimodal Large Language Models (MLLMs), addressing the challenge of efficiently transmitting images while preserving task performance. Instead of reconstructing images from compressed latents, the method employs a lightweight transform-neck module that directly adapts the latents to the intermediate features of the MLLM’s visual encoder. This avoids computationally expensive image reconstruction, reducing complexity while maintaining recognition accuracy. Additionally, a surrogate loss function—combining cross-entropy and distillation loss—guides the adaptation process, ensuring that transformed latents align well with the visual encoder’s feature space. The training process is structured into phases, where the transform-neck is first trained independently and, in some cases, jointly optimized with the image codec to further enhance machine perception.
+      The proposed method introduces a novel approach to adapting compressed image latents for Multimodal Large Language Models (MLLMs), addressing the challenge of efficiently transmitting images while preserving task performance. Instead of reconstructing images from compressed latents, the method employs a lightweight transform-neck module that directly adapts the latents to the intermediate features of the MLLM’s visual encoder. This avoids computationally expensive image reconstruction, reducing complexity while maintaining recognition accuracy. Additionally, a surrogate loss function—combining cross-entropy and distillation loss—guides the adaptation process, ensuring that transformed latents align well with the visual encoder’s feature space. The method is applicable to various application scenarios where the image codec could be (1) pre-trained and fixed for human perception (2) jointly optimized for human and machine visions (3) specifically optimized for MLLMs.
     </p>
     <div class="col-md-12">
       <hr>
@@ -118,8 +118,9 @@
     <div class="container" id="exp_results">
       <h2>Rate-distortion Results</h2>
       <p>
-        The proposed method significantly improves rate-accuracy performance for MLLM-based vision tasks by efficiently adapting compressed image latents. Compared to standard image compression methods, it achieves up to 60-80% bit-rate reductions while maintaining or even improving task performance. The lightweight transform-neck successfully replaces full image reconstruction, reducing decoding complexity by nearly 95% in terms of multiply-accumulate operations (kMAC/pixel). The method generalizes well across different MLLMs, neural image codecs, and tasks, demonstrating superior performance over baselines that rely on standard image reconstruction or post-processing. By optimizing for machine perception, the approach achieves recognition accuracy close to uncompressed images while drastically reducing transmission and computational costs.
-      </p>
+        The proposed method significantly improves rate-accuracy performance for MLLM-based vision tasks by efficiently adapting compressed image latents. Compared to using reconstructed images from codecs optimized for human perception. 
+        , it achieves up to 60-80% bit-rate reductions at the same accuracy performance. Compared with image post-processing baseline, the lightweight transform-neck achieves competitive performance while reducing decoding complexity by nearly 95% in terms of multiply-accumulate operations (kMAC/pixel). The method generalizes well across different MLLMs, neural image codecs, and tasks, demonstrating superior performance
+        By allowing the encoder to be optimizeding for machine perception (d2, d3), the approach achieves recognition performance accuracy closer to uncompressed images while reducing transmission cost.        </p>
       <br>
 
       <div id="exp1">
@@ -138,7 +139,7 @@
     <div class="container" id="Visualization">
       <h2>Qualitative Comparison</h2>
       <p>
-        The visualizations highlight the effectiveness of the proposed method in image captioning, visual question answering (VQA), referring expression comprehension (REC), and few-shot classification. Compared to standard reconstruction and post-processing baselines, the method consistently generates more accurate and semantically meaningful outputs, even at low bitrates. In captioning, for example, it produces more precise object descriptions rather than generic or incorrect labels. In VQA and REC, it improves localization accuracy, helping MLLMs better identify objects and their attributes. Additionally, in few-shot classification, it enhances class recognition, outperforming baselines that suffer from compression artifacts. The results visually confirm that adapting compressed latents directly for MLLMs preserves essential semantic information while reducing transmission and computational overhead.
+        The visualizations highlight the effectiveness of the proposed method in image captioning, visual question answering (VQA), referring expression comprehension (REC), and few-shot classification. Compared to standard reconstruction and post-processing baselines which show different artifacts in reconstructed images, our proposed the method consistently generates more accurate and semantically meaningful outputs, even at low bitrates without the need for image reconstruction. 
       </p>
 
       <div id="exp1">
@@ -149,6 +150,11 @@
           </p>
         </div>
       </div>
+
+      <p>
+        In captioning, for example, it produces more precise object descriptions rather than generic or incorrect labels. In VQA and REC, it improves localization accuracy, helping MLLMs better identify objects and their attributes. Additionally, in few-shot classification, it enhances class recognition, outperforming baselines that suffer from compression artifacts. The results visually confirm that adapting compressed latents directly for MLLMs preserves essential semantic information while reducing transmission and computational overhead.
+      </p>
+
       <div class="col-md-12">
         <hr>
       </div>
